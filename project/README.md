@@ -114,11 +114,8 @@
 # 개발 환경
 
 - Android Studio
-- Java
-- MediaPlayer 또는 ExoPlayer
-- RecyclerView
-- Room Database
-- ViewBinding
+- kotlin
+
 
 ---
 
