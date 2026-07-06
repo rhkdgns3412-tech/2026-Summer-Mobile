@@ -100,14 +100,17 @@
 
 ---
 
-# 메인 화면
+# 재생 화면
 
 ![메인 화면](play.png)
 
-# 재생 화면
+# 플레이리스트 화면
 
-![재생 화면](images/player.png)
+![플레이리스트 화면](playlist.png)
 
+# 믕악정보 화면
+
+![음악정보 화면](artist.png)
 # 개발 환경
 
 - Android Studio
