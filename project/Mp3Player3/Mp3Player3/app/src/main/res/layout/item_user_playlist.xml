@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- 왼쪽: 정사각형 썸네일 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/playlistThumbnail"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 썸네일 배경 또는 이미지 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorSurfaceVariant" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 오른쪽: 플레이리스트 정보 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/playlistThumbnail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/playlistThumbnail"
+        app:layout_constraintBottom_toBottomOf="@id/playlistThumbnail">
+
+        <!-- 플레이리스트 제목 -->
+        <TextView
+            android:id="@+id/playlistTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Playlist Name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- 곡 개수 -->
+        <TextView
+            android:id="@+id/playlistSongCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="0곡"
+            android:textSize="12sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+    </LinearLayout>
+
+    <!-- Divider (마지막 아이템 제외) -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?attr/colorSurfaceVariant"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@id/playlistThumbnail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/playlistThumbnail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

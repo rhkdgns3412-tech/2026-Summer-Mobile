@@ -1,0 +1,273 @@
+ㄲ<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mp3Player3 발표자료</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #111a2e;
+      --card: #16223d;ㅎ
+      --text: #e9eefb;
+      --muted: #9fb0d6;
+      --accent: #6ea8fe;
+      --ok: #42d392;
+      --warn: #f59e0b;
+      --danger: #f87171;
+      --border: #263454;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+      background: radial-gradient(circle at top, #13203f 0%, var(--bg) 48%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 18px 72px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1b2b4f, #16223d);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: 0.3px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .meta {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      color: #c6d4f4;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .card {
+      grid-column: span 12;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    @media (min-width: 860px) {
+      .col-6 { grid-column: span 6; }
+      .col-4 { grid-column: span 4; }
+      .col-8 { grid-column: span 8; }
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: #dbe6ff;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #dbe6ff;
+    }
+
+    ul { margin: 8px 0 0 20px; }
+    li { margin: 4px 0; }
+
+    .flow {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .danger { color: var(--danger); }
+
+    code {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px 6px;
+      color: #d8e6ff;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.92em;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .print-hint {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media print {
+      body { background: #fff; color: #111; }
+      .hero, .card, .step {
+        box-shadow: none;
+        background: #fff;
+        border-color: #d6d6d6;
+      }
+      .badge, code {
+        border-color: #ccc;
+        background: #f7f7f7;
+        color: #111;
+      }
+      .ok, .warn, .danger { color: #111; }
+      .footer, .print-hint { color: #555; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>Mp3Player3 앱 발표자료</h1>
+      <p>로컬 음악 재생, 플레이리스트 관리, 좋아요 기반 재생을 중심으로 구현한 안드로이드 MP3 플레이어</p>
+      <div class="meta">
+        <span class="badge">프로젝트: Mp3Player3</span>
+        <span class="badge">핵심 화면: Song / Playlist / Favorite / Player</span>
+        <span class="badge">발표 포인트: 재생흐름 · 셔플 · 반복 · 좋아요</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card col-6">
+        <h2>1) 프로젝트 목표</h2>
+        <ul>
+          <li>기기 내 음악 파일을 쉽게 탐색하고 재생</li>
+          <li>플레이리스트 단위로 곡을 관리하고 연속 재생</li>
+          <li>자주 듣는 곡은 좋아요로 빠르게 접근</li>
+          <li>재생 중 셔플/반복으로 청취 경험 개선</li>
+        </ul>
+      </article>
+
+      <article class="card col-6">
+        <h2>2) 기술 구성</h2>
+        <ul>
+          <li>Language: Kotlin</li>
+          <li>UI: XML + ViewBinding + Fragment + RecyclerView</li>
+          <li>Playback: <code>MediaPlayer</code> 래퍼 (<code>MusicPlayer</code>)</li>
+          <li>State: LiveData / ViewModel / Repository 패턴 일부 적용</li>
+        </ul>
+      </article>
+
+      <article class="card col-8">
+        <h2>3) 핵심 기능</h2>
+        <ul>
+          <li><strong>곡 목록 재생</strong>: 곡 선택 시 <code>PlayerActivity</code>로 이동</li>
+          <li><strong>플레이리스트 관리</strong>: 생성, 선택, 곡 추가, 목록 재생</li>
+          <li><strong>좋아요 기능</strong>: 재생 화면에서 토글, Favorite 화면 자동 반영</li>
+          <li><strong>재생 제어</strong>: 재생/일시정지, 이전/다음, 시크바</li>
+          <li><strong>셔플</strong>: 다음 곡 선택을 현재 재생목록 내 랜덤으로 결정</li>
+          <li><strong>반복</strong>: 활성화 시 곡 종료 후 같은 곡을 처음부터 재생</li>
+        </ul>
+      </article>
+
+      <article class="card col-4">
+        <h2>4) 구현 파일 포인트</h2>
+        <ul>
+          <li><code>ui/PlayerActivity.kt</code></li>
+          <li><code>player/MusicPlayer.kt</code></li>
+          <li><code>ui/fragments/PlaylistFragment.kt</code></li>
+          <li><code>ui/fragments/FavoriteFragment.kt</code></li>
+          <li><code>repository/FavoritesRepository.kt</code></li>
+        </ul>
+      </article>
+
+      <article class="card col-12">
+        <h2>5) 재생 흐름 (발표 핵심)</h2>
+        <div class="flow">
+          <div class="step"><strong>기본 흐름:</strong> 한 곡 종료 → 다음 곡 재생 → 재생목록 마지막 곡 종료 시 재생 중지</div>
+          <div class="step"><strong>셔플 버튼:</strong> 다음 곡을 현재 재생목록에서 랜덤 인덱스로 선택</div>
+          <div class="step"><strong>반복 버튼:</strong> 활성화 시 곡 종료 때 다음 곡으로 이동하지 않고 현재 곡 재시작</div>
+          <div class="step"><strong>좋아요 버튼:</strong> 현재 곡을 즐겨찾기 저장소에 반영, Favorite 화면이 즉시 갱신</div>
+        </div>
+      </article>
+
+      <article class="card col-6">
+        <h2>6) 데모 시나리오</h2>
+        <ol>
+          <li>Song 탭에서 곡 선택 후 Player 진입</li>
+          <li>기본 재생흐름: 곡 종료 시 다음 곡으로 넘어감 확인</li>
+          <li>셔플 ON 후 다음 곡 랜덤 전환 확인</li>
+          <li>반복 ON 후 현재 곡 반복 재생 확인</li>
+          <li>좋아요 누른 뒤 Favorite 탭에서 곡 반영 확인</li>
+        </ol>
+      </article>
+
+      <article class="card col-6">
+        <h2>7) 미구현/제약 사항</h2>
+        <p class="danger"><strong>필수 공지:</strong></p>
+        <ol>
+          <li>앨범,아티스트부분은 androidstudio에서 앨범과 아티스트가 안읽히는 문제때문에 구현불가</li>
+        </ol>
+        <p>
+          보완 방향: 권한/MediaStore 쿼리/미디어 스캔 재검증 후 앨범·아티스트 뷰를 추가할 예정입니다.
+        </p>
+      </article>
+
+      <article class="card col-12">
+        <h2>8) 발표 멘트 예시 (1분 버전)</h2>
+        <p>
+          "Mp3Player3는 로컬 음악 재생에 집중한 앱입니다. 사용자는 곡 목록에서 바로 재생할 수 있고,
+          플레이리스트 단위로 곡을 구성해 원하는 목록만 들을 수 있습니다.
+          재생 화면에서는 셔플과 반복을 제공하는데, 셔플은 다음 곡을 현재 목록에서 랜덤으로 고르고,
+          반복은 활성화 시 현재 곡이 끝나면 같은 곡을 다시 재생합니다.
+          또한 좋아요 버튼으로 선호 곡을 저장하면 Favorite 화면에 즉시 반영됩니다.
+          다만 현재는 개발환경에서 앨범/아티스트 메타데이터를 안정적으로 읽지 못해 해당 화면은 구현하지 못했습니다."
+        </p>
+      </article>
+    </section>
+
+    <p class="print-hint">팁: 브라우저에서 인쇄(PDF 저장)하면 발표 자료 배포본으로 바로 활용할 수 있습니다.</p>
+    <div class="footer">© Mp3Player3 Presentation</div>
+  </main>
+</body>
+</html>
+

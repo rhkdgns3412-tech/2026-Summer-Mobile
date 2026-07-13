@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- 재생 표시 아이콘 (왼쪽) -->
+    <ImageView
+        android:id="@+id/ivPlayingIndicator"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="Playing indicator"
+        android:src="@android:drawable/ic_media_play"
+        android:tint="?attr/colorPrimary"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- 곡 정보 (중앙) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/ivPlayingIndicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 곡 제목 -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- 아티스트 -->
+        <TextView
+            android:id="@+id/tvArtist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Artist"
+            android:textSize="12sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+    </LinearLayout>
+
+    <!-- Divider (아래) -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?attr/colorSurfaceVariant"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

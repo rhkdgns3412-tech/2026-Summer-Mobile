@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Mp3Player3</string>
+    <string name="player_time_text">%1$s / %2$s</string>
+    <string name="default_playlist_title">Playlist</string>
+    <string name="default_playlist_song_count">0곡</string>
+</resources>

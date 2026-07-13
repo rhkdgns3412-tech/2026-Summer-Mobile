@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".ui.fragments.PlaylistFragment">
+
+    <!-- 상단: 플레이리스트 추가 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddPlaylist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="플레이리스트 추가"
+        app:icon="@android:drawable/ic_input_add"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPlaylistSectionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="내 플레이리스트"
+        android:textColor="?attr/colorOnSurface"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAddPlaylist" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playlistRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPlaylistSectionTitle"
+        tools:listitem="@layout/item_playlist_card" />
+
+    <View
+        android:id="@+id/dividerLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?attr/colorOutline"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/playlistRecyclerView" />
+
+    <TextView
+        android:id="@+id/tvSelectedPlaylistTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="선택된 플레이리스트"
+        android:textColor="?attr/colorOnSurface"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dividerLine" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddSongs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="곡 추가"
+        app:icon="@android:drawable/ic_input_add"
+        style="@style/Widget.Material3.Button.TextButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSelectedPlaylistTitle" />
+
+    <TextView
+        android:id="@+id/tvEmptyPlaylist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="플레이리스트를 추가한 뒤 선택하면 곡 목록이 표시됩니다."
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAddSongs" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playlistSongRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEmptyPlaylist"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_song" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

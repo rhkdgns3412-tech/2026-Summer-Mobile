@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.MainActivity">
+
+    <!-- 상단 AppBar (Samsung Music 스타일) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBarContainer"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 앱 제목 (왼쪽) -->
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:text="MP3 Player"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 메뉴 버튼 (오른쪽) -->
+        <ImageButton
+            android:id="@+id/moreMenuButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="More menu"
+            android:paddingEnd="8dp"
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_more"
+            android:tint="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- MotionLayout 탭 영역 (Samsung Music 스타일) -->
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="?attr/colorSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarContainer">
+
+        <!-- 탭 아이템들 (HorizontalScrollView 내부의 LinearLayout) -->
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/tabContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+        </HorizontalScrollView>
+
+        <!-- 인디케이터 (선택된 탭 하단) -->
+        <View
+            android:id="@+id/tabIndicator"
+            android:layout_width="40dp"
+            android:layout_height="3dp"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    <!-- ViewPager2 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/motionLayout" />
+
+    <!-- Player fragment container (overlay) - initially empty/hidden. When PlayerFragment is shown
+         we replace this container and add to back stack so user can go back to ViewPager. -->
+    <FrameLayout
+        android:id="@+id/playerFragmentContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

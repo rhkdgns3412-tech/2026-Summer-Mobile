@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".ui.fragments.SongFragment">
+
+    <!-- 1. 현재 재생 곡 정보 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/currentSongContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="?attr/colorSurfaceVariant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 현재 곡 제목 -->
+        <TextView
+            android:id="@+id/tvCurrentSongTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="선택된 곡이 없습니다"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 현재 곡 아티스트 -->
+        <TextView
+            android:id="@+id/tvCurrentSongArtist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Unknown Artist"
+            android:textSize="12sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCurrentSongTitle" />
+
+        <!-- 재생 시간 / 총 시간 -->
+        <TextView
+            android:id="@+id/tvPlaybackTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="00:00 / 00:00"
+            android:textSize="10sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCurrentSongArtist" />
+
+        <!-- 진행률 SeekBar -->
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="100"
+            android:progress="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPlaybackTime"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 2. 곡 목록 RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/songRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentSongContainer"
+        app:layout_constraintBottom_toTopOf="@id/playerControlBar"
+        tools:listitem="@layout/item_song" />
+
+    <!-- 3. 플레이어 컨트롤 바 (하단) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/playerControlBar"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="?attr/colorSurfaceVariant"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 이전 곡 버튼 -->
+        <ImageButton
+            android:id="@+id/btnPrevious"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Previous"
+            android:src="@android:drawable/ic_media_previous"
+            android:tint="?attr/colorOnSurface"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- 재생/일시정지 버튼 (중앙) -->
+        <ImageButton
+            android:id="@+id/btnPlayPause"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Play / Pause"
+            android:src="@android:drawable/ic_media_play"
+            android:tint="?attr/colorPrimary"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toEndOf="@id/btnPrevious"
+            app:layout_constraintEnd_toStartOf="@id/btnNext"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- 다음 곡 버튼 -->
+        <ImageButton
+            android:id="@+id/btnNext"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Next"
+            android:src="@android:drawable/ic_media_next"
+            android:tint="?attr/colorOnSurface"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
