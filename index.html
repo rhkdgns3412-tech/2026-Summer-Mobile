@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samsung Music Benchmark Project</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI","Malgun Gothic",sans-serif;
+}
+
+body{
+    background:#111827;
+    color:white;
+    overflow:hidden;
+}
+
+.slide{
+    display:none;
+    width:100vw;
+    height:100vh;
+    padding:70px;
+}
+
+.active{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+h1{
+    font-size:52px;
+    color:#5ec4ff;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-bottom:20px;
+    color:#ffd54f;
+}
+
+p{
+    font-size:22px;
+    line-height:1.8;
+}
+
+ul{
+    margin-left:30px;
+    font-size:22px;
+    line-height:2;
+}
+
+.card{
+    background:#1f2937;
+    padding:25px;
+    border-radius:15px;
+    margin-top:25px;
+}
+
+button{
+    position:fixed;
+    bottom:30px;
+    padding:12px 28px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    background:#4cafef;
+    color:white;
+}
+
+#prev{
+    left:30px;
+}
+
+#next{
+    right:30px;
+}
+
+.page{
+    position:fixed;
+    bottom:35px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:18px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- Slide 1 -->
+<section class="slide active">
+
+<h1>Samsung Music 벤치마킹 프로젝트</h1>
+
+<div class="card">
+
+<h2>프로젝트 소개</h2>
+
+<p>
+삼성 뮤직(Samsung Music)을 벤치마킹하여
+Android에서 로컬 음악을 관리하고 재생할 수 있는
+음악 플레이어 애플리케이션을 개발한다.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>프로젝트 선정 이유</h2>
+
+<ul>
+<li>Android의 다양한 기능을 활용할 수 있다.</li>
+<li>실생활에서 많이 사용하는 애플리케이션이라 사용성이 높다.</li>
+<li>파일 관리, UI 구현 등 모바일 프로그래밍의 핵심 기술을 학습할 수 있다.</li>
+<li>기능 확장이 쉬워 프로젝트 완성도를 높일 수 있다.</li>
+</ul>
+
+</div>
+
+</section>
+
+<!-- Slide 2 -->
+<section class="slide">
+
+<h1>구현 예정 기능</h1>
+
+<div class="card">
+
+<h2>음악 재생</h2>
+
+<ul>
+<li>음악 재생 / 일시정지</li>
+<li>이전 곡 / 다음 곡</li>
+<li>현재 재생 목록</li>
+<li>좋아요 표시</li>
+<li>재생목록 생성 및 관리</li>
+<li>곡 정보 확인</li>
+<li>볼륨 및 음향 조절</li>
+<li>셔플 및 반복 재생</li>
+</ul>
+</div>
+
+<div class="card">
+
+<h2>음악 관리</h2>
+
+<ul>
+<li>좋아요한 음악 목록</li>
+<li>사용자 플레이리스트 관리</li>
+<li>앨범별 분류</li>
+<li>아티스트별 분류</li>
+<li>폴더별 분류</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>개발 환경.</h2>
+
+<ul>
+<li>Android Studio</li>
+<li>Kotlin</li>
+</ul>
+
+</div>
+
+</section>
+
+ <!-- Slide 3 -->
+<section class="slide">
+
+<h1>원본앱 화면 설계</h1>
+
+<div class="card">
+
+<h2>음악 재생 화면</h2>
+
+<img class="project-img" src="project/play.png">
+
+</div>
+
+
+<div class="card">
+
+<h2>원본앱 플레이리스트 및 음악 관리</h2>
+
+<img class="project-img" src="project/playlist.png">
+<img class="project-img" src="project/artist.png">
+
+</div>
+
+</section>
+<button id="prev">◀ 이전</button>
+<button id="next">다음 ▶</button>
+
+<div class="page">
+<span id="page">1 / 2</span>
+</div>
+
+<script>
+
+const slides=document.querySelectorAll(".slide");
+const page=document.getElementById("page");
+let current=0;
+
+function showSlide(index){
+
+slides.forEach(s=>s.classList.remove("active"));
+slides[index].classList.add("active");
+page.textContent=(index+1)+" / "+slides.length;
+
+}
+
+document.getElementById("next").onclick=()=>{
+
+current=(current+1)%slides.length;
+showSlide(current);
+
+}
+
+document.getElementById("prev").onclick=()=>{
+
+current=(current-1+slides.length)%slides.length;
+showSlide(current);
+
+}
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="ArrowRight"){
+current=(current+1)%slides.length;
+showSlide(current);
+}
+
+if(e.key==="ArrowLeft"){
+current=(current-1+slides.length)%slides.length;
+showSlide(current);
+}
+
+});
+
+</script>
+
+</body>
+</html>
